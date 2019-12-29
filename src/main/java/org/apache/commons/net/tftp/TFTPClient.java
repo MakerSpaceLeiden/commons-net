@@ -178,13 +178,15 @@ public class TFTPClient extends TFTP
                         final InetAddress recdAddress = received.getAddress();
                         if (justStarted) {
                             justStarted = false;
-                            if (recdPort == port) { // must not use the control port here
+/*
+                            if (false && recdPort == port) { // must not use the control port here
                                 TFTPErrorPacket error = new TFTPErrorPacket(recdAddress,
                                         recdPort, TFTPErrorPacket.UNKNOWN_TID,
                                         "INCORRECT SOURCE PORT");
                                 bufferedSend(error);
                                 throw new IOException("Incorrect source port ("+recdPort+") in request reply.");
                             }
+*/
                             hostPort = recdPort;
                             ack.setPort(hostPort);
                             if(!host.equals(recdAddress))
@@ -385,6 +387,7 @@ public class TFTPClient extends TFTP
                         // answering host address (for hosts with multiple IPs)
                         if (justStarted) {
                             justStarted = false;
+/*
                             if (recdPort == port) { // must not use the control port here
                                 TFTPErrorPacket error = new TFTPErrorPacket(recdAddress,
                                         recdPort, TFTPErrorPacket.UNKNOWN_TID,
@@ -392,6 +395,7 @@ public class TFTPClient extends TFTP
                                 bufferedSend(error);
                                 throw new IOException("Incorrect source port ("+recdPort+") in request reply.");
                             }
+*/
                             hostPort = recdPort;
                             data.setPort(hostPort);
                             if (!host.equals(recdAddress)) {
